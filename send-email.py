@@ -1,14 +1,21 @@
 import smtplib
 from email.mime.text import MIMEText
-from config import user_config
+from config import user_config, emails_config
+import pandas as pd
 
+# Get subject and body
 subject = "Email Subject"
 body = "This is the body of the text message"
+
+# Get sender
 sender = user_config.USER
-recipients = ["recipient1@gmail.com", "recipient2@gmail.com"]
 password = user_config.PASSWORD
 
+# Get recipients
+emails_df = pd.read_excel(emails_config.RECIPIENTS_FILENAME, header=None, names=['recipients'])
+recipients = emails_df['recipients'].to_list()
 
+# Send e-mail function
 def send_email(subject, body, sender, recipients, password):
     msg = MIMEText(body)
     msg['Subject'] = subject
@@ -19,5 +26,5 @@ def send_email(subject, body, sender, recipients, password):
        smtp_server.sendmail(sender, recipients, msg.as_string())
     print("Message sent!")
 
-
+# Call send e-mail function
 send_email(subject, body, sender, recipients, password)
