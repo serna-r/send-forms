@@ -9,3 +9,7 @@ __pycache__/
 
 # Config file
 config.py
+
+# Emails files (for confidentiality)
+emails.xlsx
+Lista expertos.xlsx
