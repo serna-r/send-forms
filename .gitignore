@@ -8,7 +8,7 @@ __pycache__/
 .venv
 
 # Config file
-config.py
+*config.py
 
 # Emails files (for confidentiality)
 emails.xlsx
